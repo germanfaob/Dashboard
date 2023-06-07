@@ -24,6 +24,8 @@
     /* Font size */
     --regular-size: 1rem;
     --title-size: 1.5rem;
+    --subtitle--size: 1rem;
+    --small-size: .9rem;
 
     /* Font weight */
     --default-weight: 400;

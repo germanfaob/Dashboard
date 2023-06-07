@@ -14,21 +14,56 @@ function DashboardLayout({ children }) {
           />
         </div>
         <ul className="nav__list">
-          <li className="nav__list-item">Noticias</li>
-          <li className="nav__list-item">Meteorología</li>
-          <li className="nav__list-item">Estrenos</li>
-          <li className="nav__list-item">Deportes</li>
-          <li className="nav__list-item">Astrología</li>
+          <li className="nav__list-item">
+            <img
+              className="nav__list-icon"
+              src="../../../../images/news.svg"
+              alt="icono noticias"
+            />
+            Noticias
+          </li>
+          <li className="nav__list-item">
+            <img
+              className="nav__list-icon"
+              src="../../../../images/weather.svg"
+              alt="icono del tiempo"
+            />
+            Meteorología
+          </li>
+          <li className="nav__list-item">
+            <img
+              className="nav__list-icon"
+              src="../../../../images/movie.svg"
+              alt="icono películas"
+            />
+            Estrenos
+          </li>
+          <li className="nav__list-item">
+            <img
+              className="nav__list-icon"
+              src="../../../../images/sports.svg"
+              alt="icono deportes"
+            />
+            Deportes
+          </li>
+          <li className="nav__list-item">
+            <img
+              className="nav__list-icon"
+              src="../../../../images/astrology.svg"
+              alt="icono astrología"
+            />
+            Astrología
+          </li>
         </ul>
         <div className="nav__icons">
           <img
             className="nav__icons-item"
-            src="../../../../images/profile.png"
+            src="../../../../images/profile.svg"
             alt="Icono de perfil de usuario"
           />
           <img
             className="nav__icons-item"
-            src="../../../../images/logout.png"
+            src="../../../../images/logout.svg"
             alt="Icono de salir"
           />
         </div>

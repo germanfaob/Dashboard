@@ -38,6 +38,9 @@
 }
 
 .nav__list-item{
+    display: flex;
+    align-items: center;
+    gap: .6rem;
     color: var(--cian-color);
 }
 
@@ -47,6 +50,11 @@
     cursor: pointer;
 }
 
+.nav__list-icon{
+    width: 1rem;
+    height: 1rem;
+}
+
 .nav__icons{
     display: flex;
     align-items: center;
@@ -54,4 +62,21 @@
     height: 5.6rem;
     gap: .8rem;
     justify-content: center;
+}
+
+.nav__icons-item{
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+/* RESPONSIVE */
+
+@media only screen and (min-width: 768px){
+    
+}
+
+@media only screen and (min-width: 768px) and (max-width: 959px){
+    .nav{
+        width: 8.75rem;
+    }
 }

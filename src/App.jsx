@@ -1,12 +1,12 @@
 import "./App.css";
+import { NewsCard } from "./pages/dashboard/News/NewsCard";
 import DashboardLayout from "./pages/dashboard/Layout/Layout";
-import { News } from "./pages/dashboard/News/News";
 
 function App() {
   return (
     <>
       <DashboardLayout>
-        <News />
+        <NewsCard />
       </DashboardLayout>
     </>
   );
