@@ -6,3 +6,10 @@
   background: var(--grey-color);
   gap: .5rem;
 }
+
+
+@media (max-width: 768px){
+  #root{
+    flex-direction: column-reverse;
+  }
+}
