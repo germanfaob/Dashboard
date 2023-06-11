@@ -98,8 +98,8 @@ function DashboardLayout({ children }) {
 }
 
 DashboardLayout.propTypes = {
-  children: PropTypes.node.isRequired,
-  Outlet: PropTypes.node.isRequired,
+  children: PropTypes.node,
+  Outlet: PropTypes.node,
 };
 
 export default DashboardLayout;

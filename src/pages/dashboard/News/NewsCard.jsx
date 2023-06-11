@@ -6,14 +6,13 @@ import "./newscard.css";
 export const NewsCard = () => {
   const [articles, setArticles] = useState([]);
   const GENERAL = "category=general";
-  const KEY = "7ade6ea44a044548a37659470356cee7";
+  const NEWS_KEY = "7ade6ea44a044548a37659470356cee7";
 
   useEffect(() => {
     const getArticles = async () => {
       const response = await axios.get(
-        `https://newsapi.org/v2/top-headlines?country=us&${GENERAL}&apiKey=${KEY}`
+        `https://newsapi.org/v2/top-headlines?country=us&${GENERAL}&apiKey=${NEWS_KEY}`
       );
-      console.log(response);
       setArticles(response.data.articles);
     };
     getArticles();
