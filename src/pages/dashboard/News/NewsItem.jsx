@@ -2,6 +2,13 @@ import PropTypes from "prop-types";
 import "./newsitem.css";
 
 const NewsItem = ({ title, description, urlToImage, publishedAt }) => {
+  let formattedDate = new Intl.DateTimeFormat(undefined, {
+    weekday: "long",
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+  }).format(new Date(publishedAt));
+
   return (
     <div className="news__card">
       <div className="news__top">
@@ -10,7 +17,7 @@ const NewsItem = ({ title, description, urlToImage, publishedAt }) => {
       <div className="news__bottom">
         <h3 className="news__bottom-title">{title}</h3>
         <p className="news__bottom-description">{description}</p>
-        <span className="news__bottom-date">{publishedAt}</span>
+        <span className="news__bottom-date">{formattedDate}</span>
       </div>
     </div>
   );

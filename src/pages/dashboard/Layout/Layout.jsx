@@ -29,7 +29,7 @@ function DashboardLayout({ children }) {
   }, []);
 
   return (
-    <>
+    <div className="dashboard-app">
       <nav className={`nav ${isMobile ? "mobile" : "desktop"}`}>
         <div className="nav__logo">
           <NavLink to="/dashboard" className="nav__logo-link">
@@ -69,10 +69,10 @@ function DashboardLayout({ children }) {
               </NavLink>
             </li>
             <li className="nav__list-item">
-              <NavLink to="/dashboard/astrology" className="nav__list-link">
+              <NavLink to="/dashboard/astronomy" className="nav__list-link">
                 <FaRegMoon className="nav__list-icon" />
                 {!isMobile && (
-                  <span className="nav__list-text">Astrología</span>
+                  <span className="nav__list-text">Astronomía</span>
                 )}
               </NavLink>
             </li>
@@ -93,7 +93,7 @@ function DashboardLayout({ children }) {
         {children}
         <Outlet />
       </section>
-    </>
+    </div>
   );
 }
 

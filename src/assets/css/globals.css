@@ -13,7 +13,7 @@
     --cian-color: #6EC1E4;
 
     /* Background */
-    --purple-color: #6232E3;
+    --purple-color: #003D71;
     --grey-color: #C5C5C5;
     --white-color: #E9E9E9;
 
@@ -27,10 +27,12 @@
     --subtitle-size: 2rem;
     --small-size: .9rem;
     --big-size: 3rem;
+    --extra-size: 5rem;
 
     /* Font weight */
     --default-weight: 400;
     --bold-weight: 700;
+    --medium-weight: 600;
 }
 
     /* Reset */
@@ -77,14 +79,20 @@ body{
     display: flex;
     width: 100%;
     height: 100vh;
+  }
+
+.dashboard-app{
+    display: flex;
+    width: 100%;
+    height: 100vh;
     padding: .93rem;
     background: var(--grey-color);
     gap: .5rem;
-  }
+}
   
   
   @media (max-width: 768px){
-    #root{
+    .dashboard-app{
       flex-direction: column-reverse;
     }
   }

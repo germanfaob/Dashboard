@@ -1,0 +1,44 @@
+.astrology__img{
+    display: flex;
+    width: 50%;
+    justify-content: center;
+    align-items: center;
+}
+
+.astrology__img-item{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px 0 0 10px;
+}
+
+.astrology__texts{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 50%;
+    padding: .5rem;
+    gap: .5rem;
+}
+
+.astrology__texts-date{
+    margin-top: .5rem;
+    color: var(--purple-color);
+    font-weight: var(--medium-weight);
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 959px){
+    .astrology__img{
+        width: 100%;
+    }
+
+    .astrology__img-item{
+        border-radius: 10px 10px 0 0;
+    }
+
+    .astrology__texts{
+        width: 100%;
+    }
+}

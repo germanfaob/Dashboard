@@ -1,0 +1,22 @@
+.astronomy-container{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+    gap: .4rem;
+}
+
+.astronomy-row{
+    display: flex;
+    width: 100%;
+    border: 2px solid var(--black-text);
+    border-radius: 10px;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 959px){
+    .astronomy-row{
+        flex-direction: column;
+    }
+}

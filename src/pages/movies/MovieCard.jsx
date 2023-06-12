@@ -26,17 +26,20 @@ export function MovieCard() {
   }, [MOVIE_URL, data, headers]);
 
   return (
-    <div className="movies">
-      {data.map((movie) => {
-        return (
-          <MovieItem
-            key={movie.id}
-            poster_path={movie.poster_path}
-            original_title={movie.original_title}
-            vote_average={movie.vote_average}
-          />
-        );
-      })}
+    <div className="movie-container">
+      <h2 className="movie__title">Últimos estrenos</h2>
+      <div className="movies">
+        {data.map((movie) => {
+          return (
+            <MovieItem
+              key={movie.id}
+              poster_path={movie.poster_path}
+              original_title={movie.original_title}
+              vote_average={movie.vote_average}
+            />
+          );
+        })}
+      </div>
     </div>
   );
 }
