@@ -9,19 +9,30 @@ export function AstronomyCard() {
   const [astronomy, setAstronomy] = useState([]);
 
   useEffect(() => {
+    // Abort fetch if the component is unmounted
+    const cancelToken = axios.CancelToken.source();
+
     const SEARCH_PARAM = "supernova";
 
     const getAstronomy = async () => {
       try {
         const response = await axios.get(
-          `https://images-api.nasa.gov/search?q=${SEARCH_PARAM}&media_type=image`
+          `https://images-api.nasa.gov/search?q=${SEARCH_PARAM}&media_type=image`,
+          { cancelToken: cancelToken.token }
         );
         setAstronomy(response.data.collection.items);
       } catch (error) {
-        console.log(error);
+        if (axios.isCancel(error)) {
+          console.log("Request cancelled");
+        } else {
+          console.log("Error occured while fetching", error.message);
+        }
       }
     };
     getAstronomy();
+    return () => {
+      cancelToken.cancel("The request was cancelled from the component");
+    };
   }, []);
 
   console.log(astronomy);

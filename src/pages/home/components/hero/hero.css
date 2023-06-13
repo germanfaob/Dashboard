@@ -1,6 +1,9 @@
 .hero__column{
+    display: flex;
     width: 50%;
     height: 100%;
+    justify-content: flex-end;
+    align-items: center;
 }
 
 .hero__text{
@@ -12,6 +15,14 @@
     height: 100%;
 }
 
+.hero__text-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 68%;
+}
+
 .hero__text-bold{
     font-size: var(--extra-size);
     color: var(--white-color);
@@ -19,8 +30,10 @@
 }
 
 .hero__text-description{
+    text-align: justify;
+    line-height: 1.5rem;
+    font-size: 1.05rem;
     color: var(--white-color);
-    font-size: var(--title-size);
 }
 
 .hero__text-button{
@@ -35,4 +48,11 @@
 .hero__text-button:hover{
     background: var(--white-color);
     transition: .3s;
+}
+
+.hero__image{
+    width: 700px;
+    height: 550px;
+    object-fit: cover;
+    margin-top: -6rem;
 }

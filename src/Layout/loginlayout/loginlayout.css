@@ -1,0 +1,9 @@
+.loginlayout-app{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    padding: .93rem;
+    background: var(--white-color);
+}

@@ -9,13 +9,29 @@ export const NewsCard = () => {
   const NEWS_KEY = "7ade6ea44a044548a37659470356cee7";
 
   useEffect(() => {
+    // Abort fetch if the component is unmounted
+    const cancelToken = axios.CancelToken.source();
+
     const getArticles = async () => {
-      const response = await axios.get(
-        `https://newsapi.org/v2/top-headlines?country=us&${GENERAL}&apiKey=${NEWS_KEY}`
-      );
-      setArticles(response.data.articles);
+      try {
+        const response = await axios.get(
+          `https://newsapi.org/v2/top-headlines?country=us&${GENERAL}&apiKey=${NEWS_KEY}`,
+          { cancelToken: cancelToken.token }
+        );
+        setArticles(response.data.articles);
+      } catch (error) {
+        if (axios.isCancel(error)) {
+          console.log("Request cancelled");
+        } else {
+          console.log("Error occured while fetching", error.message);
+        }
+      }
     };
     getArticles();
+
+    return () => {
+      cancelToken.cancel("The request was cancelled from the component");
+    };
   }, []);
 
   return (

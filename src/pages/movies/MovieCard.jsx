@@ -17,13 +17,29 @@ export function MovieCard() {
   const MOVIE_URL = `https://api.themoviedb.org/3/${NOW_PLAYING}`;
 
   useEffect(() => {
+    // Abort fetch if the component is unmounted
+    const cancelToken = axios.CancelToken.source();
+
     const getMovies = async () => {
-      const response = await axios.get(MOVIE_URL, { headers: headers });
-      setData(response.data.results);
+      try {
+        const response = await axios.get(MOVIE_URL, {
+          headers: headers,
+          cancelToken: cancelToken.token,
+        });
+        setData(response.data.results);
+      } catch (error) {
+        if (axios.isCancel(error)) {
+          console.log("Request cancelled");
+        } else {
+          console.log("Error occured while fetching", error.message);
+        }
+      }
     };
     getMovies();
-    console.log(data);
-  }, [MOVIE_URL, data, headers]);
+    return () => {
+      cancelToken.cancel("The request was cancelled from the component");
+    };
+  }, [MOVIE_URL]);
 
   return (
     <div className="movie-container">
