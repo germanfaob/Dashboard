@@ -5,8 +5,10 @@ import "./loginlayout.css";
 export const LoginLayout = ({ children }) => {
   return (
     <div className="loginlayout-app">
-      {children}
-      <Outlet />
+      <div className="loginlayout-container">
+        {children}
+        <Outlet />
+      </div>
     </div>
   );
 };

@@ -1,5 +1,13 @@
-import { createContext, useContext } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 import PropTypes from "prop-types";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
+  onAuthStateChanged,
+  sendPasswordResetEmail,
+} from "firebase/auth";
+import { auth } from "../firebase/firebase";
 
 const authContext = createContext();
 
@@ -10,12 +18,43 @@ export const useAuth = () => {
 };
 
 export function AuthProvider({ children }) {
-  const user = {
-    login: true,
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  const signup = (email, password) => {
+    return createUserWithEmailAndPassword(auth, email, password);
   };
 
+  const login = (email, password) => {
+    return signInWithEmailAndPassword(auth, email, password);
+  };
+
+  const logout = () => signOut(auth);
+
+  const resetPassword = async (email) => sendPasswordResetEmail(auth, email);
+
+  useEffect(() => {
+    const unsubuscribe = onAuthStateChanged(auth, (currentUser) => {
+      console.log({ currentUser });
+      setUser(currentUser);
+      setLoading(false);
+    });
+    return () => unsubuscribe();
+  }, []);
+
   return (
-    <authContext.Provider value={{ user }}>{children}</authContext.Provider>
+    <authContext.Provider
+      value={{
+        signup,
+        login,
+        user,
+        logout,
+        loading,
+        resetPassword,
+      }}
+    >
+      {children}
+    </authContext.Provider>
   );
 }
 

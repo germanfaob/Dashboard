@@ -13,9 +13,20 @@ import {
   FaUser,
   FaRegShareSquare,
 } from "react-icons/fa";
+import { useAuth } from "../../../context/authContext";
 
 function DashboardLayout({ children }) {
   const [isMobile, setIsMobile] = useState(false);
+  const { logout, user } = useAuth();
+
+  console.log(user);
+  const handleLogout = async () => {
+    try {
+      await logout();
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
 
   useEffect(() => {
     const handleResize = () => {
@@ -83,7 +94,7 @@ function DashboardLayout({ children }) {
           <NavLink to="/dashboard/profile" className="nav__icons-link">
             <FaUser className="nav__icons-item" alt="icono usuario" />
           </NavLink>
-          <NavLink to="/dashboard/logout" className="nav__icons-link">
+          <NavLink to="/" className="nav__icons-link" onClick={handleLogout}>
             <FaRegShareSquare className="nav__icons-item" alt="icono logout" />
           </NavLink>
         </div>

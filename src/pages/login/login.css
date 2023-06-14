@@ -5,8 +5,7 @@
     height: 60%;
     padding: .93rem;
     border-radius: 15px;
-    background: rgb(131,58,180);
-    background: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 50%, rgba(252,176,69,1) 100%);
+    background: var(--purple-color);
     box-shadow: 2px -1px 5px 3px rgba(66,66,66,0.5);
     transition: .5s;
 }
@@ -14,4 +13,115 @@
 .login-container:hover{
     box-shadow: 0 0 0 0 rgba(0,0,0,0.5);
     transition: .5s;
+}
+
+.login{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    justify-content: space-evenly;
+    border-radius: 10px;
+}
+
+/* HEADER */
+
+.login__header{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    
+}
+
+.btn-left, .btn-right{
+    width: 50%;
+    padding: .6rem;
+    text-align: center;
+    border-radius: 10px 0 0 10px;
+    background: var(--white-color);
+    color: var(--black-text);
+    font-weight: var(--medium-weight);
+}
+
+.btn-right{
+    border-radius: 0 10px 10px 0;
+    background: var(--black-text);
+    color: var(--white-color);
+}
+
+.btn-left:hover{
+    background: var(--black-text);
+    transition: .3s;
+    color: var(--white-color);
+}
+
+.btn-right:hover{
+    background: var(--white-color);
+    transition: .3s;
+    color: var(--black-text);
+}
+
+/* BODY */
+
+.login__body{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.login__body-title{
+    font-weight: var(--default-weight);
+    color: var(--white-color);
+}
+
+.login__form{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    gap: 1rem;
+}
+
+.login__form-group{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: 1rem;
+}
+
+.login__form-label{
+    width: 28%;
+    color: var(--white-color);
+}
+
+.login__form-input{
+    width: 72%;
+    padding: .6rem;
+    border-radius: 10px;
+    border: 2px solid var(--black-text);
+}
+
+/* FOOTER */
+
+.login__form-footer{
+    width: 100%;
+    display: flex;
+}
+
+.login__form-btn{
+    width: 100%;
+    padding: .6rem;
+    border-radius: 10px;
+    border: 2px solid var(--black-text);
+    background: var(--white-color);
+    text-transform: uppercase;
+    font-weight: var(--medium-weight);
+}
+
+.login__form-btn:hover{
+    transition: .3s;
+    border: 2px solid var(--white-color);
+    background: var(--black-text);
+    color: var(--white-color);
+    cursor: pointer;
 }
