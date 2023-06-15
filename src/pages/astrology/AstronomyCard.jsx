@@ -2,11 +2,13 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { AstronomyItem } from "./AstronomyItem";
 import "./astronomycard.css";
+import { Loader } from "../components/Loader";
 
 // const NASA_KEY = "jnyUXAOkazc1si0pvAgQrCQly186E5SBCZVLbg03";
 
 export function AstronomyCard() {
   const [astronomy, setAstronomy] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     // Abort fetch if the component is unmounted
@@ -21,6 +23,7 @@ export function AstronomyCard() {
           { cancelToken: cancelToken.token }
         );
         setAstronomy(response.data.collection.items);
+        setLoading(false);
       } catch (error) {
         if (axios.isCancel(error)) {
           console.log("Request cancelled");
@@ -34,6 +37,10 @@ export function AstronomyCard() {
       cancelToken.cancel("The request was cancelled from the component");
     };
   }, []);
+
+  if (loading) {
+    return <Loader />;
+  }
 
   console.log(astronomy);
 

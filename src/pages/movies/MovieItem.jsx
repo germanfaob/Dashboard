@@ -10,6 +10,7 @@ export function MovieItem({ poster_path, original_title, vote_average }) {
             className="movie__top-img"
             src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
             alt={original_title}
+            loading="lazy"
           />
         </div>
         <div className="movie__bottom">

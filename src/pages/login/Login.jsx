@@ -2,8 +2,8 @@ import { useNavigate } from "react-router";
 import "./login.css";
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
-import { auth } from "../../firebase/firebase"
-import { signInWithEmailAndPassword } from "firebase/auth"
+import { auth } from "../../firebase/firebase";
+import { signInWithEmailAndPassword } from "firebase/auth";
 
 export const Login = () => {
   const [value, setValue] = useState({
@@ -14,22 +14,22 @@ export const Login = () => {
   const [errorMsg, setErrorMsg] = useState([]);
   const [submitButtonDisabled, setSubmitButtonDisable] = useState(false);
 
-  const Logging=()=>{
-    if(!value.email || !value.password){
+  const Logging = () => {
+    if (!value.email || !value.password) {
       setErrorMsg("Faltan datos");
-      return
+      return;
     }
     setErrorMsg("");
     setSubmitButtonDisable(true);
-    signInWithEmailAndPassword(auth,value.email,value.password)
-    .then(async(res)=>{
-      setSubmitButtonDisable(false);
-      navigate("/dashboard");
-    })
-    .catch((err)=>{
-      setSubmitButtonDisable(false);
-      setErrorMsg(err.message);
-    });
+    signInWithEmailAndPassword(auth, value.email, value.password)
+      .then(async (res) => {
+        setSubmitButtonDisable(false);
+        navigate("/dashboard");
+      })
+      .catch((err) => {
+        setSubmitButtonDisable(false);
+        setErrorMsg(err.message);
+      });
   };
 
   return (
@@ -59,7 +59,9 @@ export const Login = () => {
               name="email"
               id="email"
               placeholder="email@example.com"
-              onChange={(event)=>setValue((prev)=>({...prev,email:event.target.value}))}
+              onChange={(event) =>
+                setValue((prev) => ({ ...prev, email: event.target.value }))
+              }
             />
           </div>
           <div className="login__form-group">
@@ -71,13 +73,20 @@ export const Login = () => {
               type="password"
               name="password"
               id="password"
-              onChange={(event)=>setValue((prev)=>({...prev,password:event.target.value}))}
+              onChange={(event) =>
+                setValue((prev) => ({ ...prev, password: event.target.value }))
+              }
             />
           </div>
-            <b className="login__form-error">{errorMsg}</b>
+          <b className="login__form-error">{errorMsg}</b>
         </form>
         <div className="login__form-footer">
-          <button className="login__form-btn" type="submit" onClick={Logging} disabled={submitButtonDisabled}>
+          <button
+            className="login__form-btn"
+            type="submit"
+            onClick={Logging}
+            disabled={submitButtonDisabled}
+          >
             Comenzar
           </button>
         </div>

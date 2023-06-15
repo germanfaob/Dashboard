@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { MovieItem } from "./MovieItem";
+import { Loader } from "../components/Loader";
 
 import "./moviecard.css";
 
 export function MovieCard() {
   const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const MOVIE_TOKEN =
     "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwNzVjMjQ0MTQ4NjU1Mjc1YjU3MDIwOTgyZTUyYmFkMiIsInN1YiI6IjYzZTBlY2U5MjNkMjc4MDA4NTJkNmRhZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.cKA1BB7aKm4ab_yEjpiEED0d15UTflxexe9wjciuJlc";
@@ -27,6 +29,7 @@ export function MovieCard() {
           cancelToken: cancelToken.token,
         });
         setData(response.data.results);
+        setLoading(false);
       } catch (error) {
         if (axios.isCancel(error)) {
           console.log("Request cancelled");
@@ -39,7 +42,11 @@ export function MovieCard() {
     return () => {
       cancelToken.cancel("The request was cancelled from the component");
     };
-  }, [MOVIE_URL]);
+  }, []);
+
+  if (loading) {
+    return <Loader />;
+  }
 
   return (
     <div className="movie-container">

@@ -2,12 +2,15 @@ import PropTypes from "prop-types";
 import "./newsitem.css";
 
 const NewsItem = ({ title, description, urlToImage, publishedAt }) => {
-  let formattedDate = new Intl.DateTimeFormat(undefined, {
-    weekday: "long",
+  const date = new Date(publishedAt);
+
+  let formattedDate = new Intl.DateTimeFormat("en", {
+    year: "numeric",
     month: "long",
     day: "numeric",
-    year: "numeric",
-  }).format(new Date(publishedAt));
+    hour: "numeric",
+    minute: "numeric",
+  }).format(date);
 
   return (
     <div className="news__card">

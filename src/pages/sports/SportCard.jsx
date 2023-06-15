@@ -2,11 +2,14 @@ import { useState, useEffect } from "react";
 import "./sportcard.css";
 import axios from "axios";
 import { SportItem } from "./SportItem";
+import { Loader } from "../components/Loader";
 
 export function SportCard() {
   const [data, setData] = useState([]);
-  const SPORTS = "category=sports";
-  const NEWS_KEY = "7ade6ea44a044548a37659470356cee7";
+  const [loading, setLoading] = useState(true);
+  // const SPORTS = "category=sports";
+  // const NEWS_KEY = "7ade6ea44a044548a37659470356cee7";
+  const API_TOKEN = "7yUs5W0LVnFWeMtWuglfjm2wtsktZBw3n6GWzcvi";
 
   useEffect(() => {
     // Abort fetch if the component is unmounted
@@ -15,10 +18,11 @@ export function SportCard() {
     const getSports = async () => {
       try {
         const response = await axios.get(
-          `https://newsapi.org/v2/top-headlines?country=us&${SPORTS}&apiKey=${NEWS_KEY}`,
+          `https://api.thenewsapi.com/v1/news/top?api_token=${API_TOKEN}&categories=sports&locale=us&limit=3`,
           { cancelToken: cancelToken.token }
         );
-        setData(response.data.articles);
+        setData(response.data.data);
+        setLoading(false);
       } catch (error) {
         if (axios.isCancel(error)) {
           console.log("Request cancelled");
@@ -33,16 +37,20 @@ export function SportCard() {
     };
   }, []);
 
+  if (loading) {
+    return <Loader />;
+  }
+
   return (
     <div className="sports">
-      {data.map((sport, index) => {
+      {data.map((sport) => {
         return (
           <SportItem
-            key={index}
+            key={sport.uuid}
             title={sport.title}
             description={sport.description}
-            urlToImage={sport.urlToImage}
-            publishedAt={sport.publishedAt}
+            urlToImage={sport.image_url}
+            publishedAt={sport.published_at}
           />
         );
       })}

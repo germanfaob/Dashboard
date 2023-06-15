@@ -1,0 +1,23 @@
+.notfound{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    gap: .9rem;
+}
+
+.notfound__link{
+    padding: .6rem;
+    border-radius: 10px;
+    background: var(--grey-color);
+    color: var(--purple-color);
+    font-size: var(--big-size);
+    text-shadow: 0 0 15px var(--purple-color);
+}
+
+.notfound__link:hover{
+    transition: .3s;
+    background: var(--purple-color);
+    color: var(--white-color);
+}

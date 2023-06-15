@@ -9,14 +9,18 @@ import { Home } from "../pages/home/Home";
 import { LoginLayout } from "../Layout/loginlayout/LoginLayout";
 import { SignUp } from "../pages/signup/SignUp";
 import { Login } from "../pages/login/Login";
+import { NotFound } from "../pages/NotFound/NotFound";
+import { Profile } from "../pages/profile/Profile";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <Home />,
+    errorElement: <NotFound />,
   },
   {
     element: <LoginLayout />,
+    errorElement: <NotFound />,
     children: [
       {
         path: "/login",
@@ -31,6 +35,7 @@ export const router = createBrowserRouter([
   {
     path: "/dashboard",
     element: <DashboardLayout />,
+    errorElement: <NotFound />,
     children: [
       {
         index: true,
@@ -55,6 +60,10 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard/astronomy",
         element: <AstronomyCard />,
+      },
+      {
+        path: "/dashboard/profile",
+        element: <Profile />,
       },
     ],
   },

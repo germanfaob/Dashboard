@@ -1,7 +1,8 @@
 import "./weather.css";
-import { CircularProgress, Slide, TextField } from "@mui/material";
+import { Slide, TextField } from "@mui/material";
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { Loader } from "../components/Loader";
 
 export function Weather() {
   const WEATHER_KEY = "a08652be61e92f0f0f9710bfb4f9b223";
@@ -87,7 +88,7 @@ export function Weather() {
           </Slide>
         </>
       ) : (
-        <CircularProgress />
+        <Loader />
       )}
     </div>
   );
