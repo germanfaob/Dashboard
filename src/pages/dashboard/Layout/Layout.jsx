@@ -13,19 +13,13 @@ import {
   FaUser,
   FaRegShareSquare,
 } from "react-icons/fa";
-import { useAuth } from "../../../context/authContext";
+import { auth } from "../../../firebase/firebase"
 
 function DashboardLayout({ children }) {
   const [isMobile, setIsMobile] = useState(false);
-  const { logout, user } = useAuth();
 
-  console.log(user);
-  const handleLogout = async () => {
-    try {
-      await logout();
-    } catch (error) {
-      console.error(error.message);
-    }
+  const handleLogout = () => {
+    return auth.signOut()
   };
 
   useEffect(() => {

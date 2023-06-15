@@ -4,15 +4,18 @@
     width: 20rem;
     height: 34rem;
     border-radius: 10px;
+    border: 3px solid var(--black-text);
+}
+
+.news__card:hover{
+    transition: .3s;
+    border: 3px solid var(--purple-color);
 }
 
 .news__top{
     display: flex;
-    width: 20rem;
+    width: 100%;
     height: 17rem;
-    border-right: 2px solid var(--black-text);
-    border-top: 2px solid var(--black-text);
-    border-left: 2px solid var(--black-text);
     border-radius: 10px 10px 0 0;
 }
 
@@ -30,9 +33,7 @@
     height: 17rem;
     padding: .5rem;
     gap: .6rem;
-    border-right: 2px solid var(--black-text);
-    border-bottom: 2px solid var(--black-text);
-    border-left: 2px solid var(--black-text);
+
     border-radius: 0 0 10px 10px;
     word-break: break-all;
 }

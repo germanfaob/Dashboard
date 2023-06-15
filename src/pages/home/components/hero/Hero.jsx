@@ -4,7 +4,7 @@ import "./hero.css";
 export const Hero = () => {
   return (
     <>
-      <div className="hero__column">
+      <div className="hero__column column-left">
         <div className="hero__text">
           <span className="hero__text-bold">Mantente</span>
           <span className="hero__text-bold">Informado</span>
@@ -22,7 +22,7 @@ export const Hero = () => {
           </div>
         </div>
       </div>
-      <div className="hero__column">
+      <div className="hero__column column-right">
         <img
           className="hero__image"
           src="../../../../../images/dashboard.png"

@@ -1,35 +1,47 @@
 import { useState } from "react";
 import "./signup.css";
-import { useAuth } from "../../context/authContext";
 import { useNavigate } from "react-router";
-import { Alert } from "../../components/Alert";
 import { NavLink } from "react-router-dom";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth"
+import {auth} from "../../firebase/firebase"
 
 export const SignUp = () => {
-  const [user, setUser] = useState({
+  
+
+  const [value, setValue] = useState({
+    name: "",
     email: "",
     password: "",
   });
-
-  const { signup } = useAuth();
-
-  const [error, setError] = useState("");
+  const [errorMsg, setErrorMsg] = useState("");
   const navigate = useNavigate();
+  const [submitButtonDisabled, setSubmitButtonDisable] = useState(false);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setError("");
-    try {
-      await signup(user.email, user.password);
-      navigate("/dashboard");
-    } catch (error) {
-      setError(error.message);
+  const register = ()=>{
+    if(!value.name || !value.email || !value.password){
+        setErrorMsg("Rellene todos los campos")
+        return;
     }
-  };
+    setErrorMsg("")
+    setSubmitButtonDisable(true)
+    createUserWithEmailAndPassword(auth,value.email,value.password)
+    .then(async (res)=>{
+        setSubmitButtonDisable(false);
+        const user = res.user;
+        await updateProfile(user,{
+            displayName: value.name,
+        });
+        navigate("/dashboard")
+    })
+    .catch((err)=>{
+        setSubmitButtonDisable(false)
+        setErrorMsg(err.message)
+    });
+};
+
 
   return (
     <>
-      {error && <Alert message={error} />}
       <div className="login">
         <div className="login__header">
           <NavLink to="/signup" className="btn-left">
@@ -44,7 +56,7 @@ export const SignUp = () => {
         <div className="login__body">
           <h1 className="login__body-title">Registrarse gratis</h1>
         </div>
-        <form className="login__form" onSubmit={handleSubmit}>
+        <form className="login__form">
           <div className="login__form-group">
             <label className="login__form-label" htmlFor="email">
               Email:
@@ -52,10 +64,19 @@ export const SignUp = () => {
             <input
               className="login__form-input"
               type="email"
-              name="email"
-              id="email"
               placeholder="email@example.com"
-              onChange={(e) => setUser({ ...user, email: e.target.value })}
+              onChange={(event)=> setValue((prev)=>({...prev, email:event.target.value}))}
+            />
+          </div>
+          <div className="login__form-group">
+            <label className="login__form-label" htmlFor="name">
+              Nombre:
+            </label>
+            <input
+              className="login__form-input"
+              type="text"
+              placeholder="Nombre de usuario"
+              onChange={(event)=> setValue((prev)=>({...prev, name:event.target.value}))}
             />
           </div>
           <div className="login__form-group">
@@ -65,14 +86,14 @@ export const SignUp = () => {
             <input
               className="login__form-input"
               type="password"
-              name="password"
-              id="password"
-              onChange={(e) => setUser({ ...user, password: e.target.value })}
+              placeholder="********"
+              onChange={(event)=> setValue((prev)=>({...prev, password:event.target.value}))}
             />
           </div>
+            <b className="login__form-error">{errorMsg}</b>
         </form>
         <div className="login__form-footer">
-          <button className="login__form-btn">Registrar</button>
+          <button className="login__form-btn" onClick={register} disabled={submitButtonDisabled}>Registrar</button>
         </div>
       </div>
     </>

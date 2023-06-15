@@ -9,8 +9,13 @@
 .astronomy-row{
     display: flex;
     width: 100%;
-    border: 2px solid var(--black-text);
+    border: 3px solid var(--black-text);
     border-radius: 10px;
+}
+
+.astronomy-row:hover{
+    transition: .3s;
+    border: 3px solid var(--purple-color);
 }
 
 /* RESPONSIVE */

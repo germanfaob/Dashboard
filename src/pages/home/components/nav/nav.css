@@ -58,3 +58,11 @@
     background: var(--white-color);
     transition: .3s;
 }
+
+/* RESPONSIVE */
+
+@media (max-width: 768px){
+    .homelogo__span{
+        display: none;
+    }
+}

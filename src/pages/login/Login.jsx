@@ -1,37 +1,39 @@
 import { useNavigate } from "react-router";
-import { useAuth } from "../../context/authContext";
 import "./login.css";
 import { useState } from "react";
-import { Alert } from "../../components/Alert";
 import { NavLink } from "react-router-dom";
+import { auth } from "../../firebase/firebase"
+import { signInWithEmailAndPassword } from "firebase/auth"
 
 export const Login = () => {
-  const [user, setUser] = useState({
+  const [value, setValue] = useState({
     email: "",
     password: "",
   });
-
-  const { login } = useAuth();
   const navigate = useNavigate();
-  const [error, setError] = useState();
+  const [errorMsg, setErrorMsg] = useState([]);
+  const [submitButtonDisabled, setSubmitButtonDisable] = useState(false);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setError("");
-    try {
-      await login(user.email, user.password);
-      navigate("/dashboard");
-    } catch (error) {
-      setError(error.message);
+  const Logging=()=>{
+    if(!value.email || !value.password){
+      setErrorMsg("Faltan datos");
+      return
     }
+    setErrorMsg("");
+    setSubmitButtonDisable(true);
+    signInWithEmailAndPassword(auth,value.email,value.password)
+    .then(async(res)=>{
+      setSubmitButtonDisable(false);
+      navigate("/dashboard");
+    })
+    .catch((err)=>{
+      setSubmitButtonDisable(false);
+      setErrorMsg(err.message);
+    });
   };
-
-  const handleChange = ({ target: { value, name } }) =>
-    setUser({ ...user, [name]: value });
 
   return (
     <>
-      {error && <Alert message={error} />}
       <div className="login">
         <div className="login__header">
           <NavLink to="/signup" className="btn-left">
@@ -46,7 +48,7 @@ export const Login = () => {
         <div className="login__body">
           <h1 className="login__body-title">Iniciar sesión</h1>
         </div>
-        <form className="login__form" onSubmit={handleSubmit}>
+        <form className="login__form">
           <div className="login__form-group">
             <label className="login__form-label" htmlFor="email">
               Email:
@@ -57,11 +59,11 @@ export const Login = () => {
               name="email"
               id="email"
               placeholder="email@example.com"
-              onChange={handleChange}
+              onChange={(event)=>setValue((prev)=>({...prev,email:event.target.value}))}
             />
           </div>
           <div className="login__form-group">
-            <label className="login__form-label" htmlFor="">
+            <label className="login__form-label" htmlFor="password">
               Contraseña:
             </label>
             <input
@@ -69,12 +71,13 @@ export const Login = () => {
               type="password"
               name="password"
               id="password"
-              onChange={handleChange}
+              onChange={(event)=>setValue((prev)=>({...prev,password:event.target.value}))}
             />
           </div>
+            <b className="login__form-error">{errorMsg}</b>
         </form>
         <div className="login__form-footer">
-          <button className="login__form-btn" type="submit">
+          <button className="login__form-btn" type="submit" onClick={Logging} disabled={submitButtonDisabled}>
             Comenzar
           </button>
         </div>
