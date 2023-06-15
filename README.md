@@ -2,7 +2,7 @@
 
 ## Descripción
 
-[Dashboard con página de bienvenida + Sistema de login con Firebase + Dashboard completo con diferentes API's y funcionalidades]
+[Página de bienvenida + Sistema de login con Firebase + Dashboard completo con diferentes API's y funcionalidades]
 
 ## Tabla de contenido
 
