@@ -1,5 +1,52 @@
 .profile{
     display: flex;
+    flex-direction: column;
+    align-items: center;
     width: 100%;
+    gap: 1rem;
+}
+
+.profile__title{
+    font-size: var(--subtitle-size);
+    padding: 2rem;
+}
+
+.profile__description{
+    display: flex;
+    flex-direction: column;
+    gap: .93rem;
+}
+
+.profile__description-img{
+    width: 200px;
+    height: 200px;
+    border-radius: 100%;
+    background: var(--grey-color);
+}
+
+.profile__description-text{
+    text-align: center;
+}
+
+.profile__links{
+    display: flex;
     justify-content: center;
+    gap: .5rem;
+}
+
+.profile__links-list{
+    display: flex;
+    justify-content: center;
+    gap: .6rem;
+}
+
+.profile__links-icon{
+    font-size: 34px;
+    padding: .3rem;
+    color: var(--purple-color);
+}
+
+.profile__links-icon:hover{
+    transition: .3s;
+    color: var(--black-text);
 }
