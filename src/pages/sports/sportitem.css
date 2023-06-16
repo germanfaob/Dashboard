@@ -10,6 +10,7 @@
 .sport__card:hover{
     transition: .3s;
     border: 3px solid var(--purple-color);
+    translate: 0 -4px;
 }
 
 .sport__header{

@@ -18,10 +18,18 @@
 }
 
 .profile__description-img{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 200px;
     height: 200px;
     border-radius: 100%;
     background: var(--grey-color);
+}
+
+.profile__description-icon{
+    font-size: 60px;
+    color: var(--black-text);
 }
 
 .profile__description-text{
