@@ -11,7 +11,6 @@ export function AstronomyCard() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Abort fetch if the component is unmounted
     const cancelToken = axios.CancelToken.source();
 
     const SEARCH_PARAM = "supernova";
@@ -34,6 +33,7 @@ export function AstronomyCard() {
     };
     getAstronomy();
     return () => {
+      // Abort fetch if the component is unmounted
       cancelToken.cancel("The request was cancelled from the component");
     };
   }, []);
